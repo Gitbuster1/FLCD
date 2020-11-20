@@ -1,0 +1,6 @@
+S A
+a b c
+S
+S->a#S#b#S
+S->a#S|c
+A->a#A#b#A
