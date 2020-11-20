@@ -1,0 +1,23 @@
+program p2;
+var n, prim;
+begin
+read(n);
+prim = 1;
+if (n < 2):
+write(n + “ is not prime”);
+else:
+if (n == 2):
+write(n + “ is prime”);
+else:
+if (n > 2):
+if (n % 2 == 0):
+write(n + “ is not prime”);
+else:
+for (i = 3 to sqrt(n); i = i + 2):
+if (n % i == 0):
+write(n + “ is not prime”);
+prim = 0;
+break;
+if (prim == 1):
+write(n + “ is prime”);
+end;
