@@ -8,7 +8,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-
+    
+    // Main and Main1 modules could be one single module, to prevent rewriting sequenceFromFile and printGrammar functions.
     public static void main(String[] args) {
         try {
             Grammar grammar = Grammar.fromFile("g1.txt");
