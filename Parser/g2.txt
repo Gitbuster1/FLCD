@@ -1,28 +1,27 @@
-program stmt_list stmt simple_stmt struct_stmt assign_stmt decl_stmt io_stmt identifier constant expression array_elem term factor arithmetic_operand decl_stmt type simple_type comp_type read_operand write_operand if_stmt while_stmt condition relation pif_symbol
-:= - + = * / ( ) [ ] read write if else while int char { } ; == < > <= > != 0 1
+program stmt_list stmt simple_stmt struct_stmt assign_stmt decl_stmt io_stmt identifier constant expression array_elem term factor arithmetic_operand decl_stmt type simple_type comp_type read_operand write_operand if_stmt while_stmt condition relation
+:= - + = * / % ( ) [ ] [] read write if else while int char { } ; == < > <= >= != 0 1
 program
 program->stmt_list
-stmt_list->stmt|stmt#;|stmt#;#stmt_list
+stmt_list->stmt#;|struct_stmt|stmt#;#stmt_list|struct_stmt#stmt_list
 stmt->simple_stmt|struct_stmt
 simple_stmt->assign_stmt|decl_stmt|io_stmt
 assign_stmt->identifier#:=#expression|array_elem#:=#expression
-expression->expression#+#term|expression#-#term|term
-term->term#*#factor|term#/#factor|factor
+expression->term#+#expression|term#-#expression|term
+term->factor#*#term|factor#/#term|factor#%#term|factor
 factor->arithmetic_operand|(#expression#)
 arithmetic_operand->identifier|constant|array_elem
 decl_stmt->type#identifier
 type->simple_type|comp_type
 simple_type->int|char
-comp_type->simple_type#[]
+comp_type->simple_type#[#constant#]
 io_stmt->read#(#read_operand#)|write#(#write_operand#)
 read_operand->identifier|array_elem
 write_operand->identifier|array_elem|constant
 struct_stmt->{#stmt_list#}|if_stmt|while_stmt
-if_stmt->if#condition#stmt|if#condition#stmt#else#stmt
-while_stmt->while#condition#{#stmt#}
+if_stmt->if#(#condition#)#struct_stmt|if#(#condition#)#struct_stmt#else#struct_stmt
+while_stmt->while#(#condition#)#struct_stmt
 condition->expression#relation#expression
 relation->==|<|>|<=|>=|!=
-identifier->pif_symbol
-array_elem->pif_symbol
-constant->pif_symbol
-pif_symbol->0|1
+identifier->0
+array_elem->identifier#[#expression#]
+constant->1
