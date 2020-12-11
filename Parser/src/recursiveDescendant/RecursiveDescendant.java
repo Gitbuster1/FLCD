@@ -19,7 +19,8 @@ public class RecursiveDescendant {
         configuration.inputStack.push("epsilon");
         configuration.inputStack.push(grammar.start);
     }
-
+    
+    // Print comments could be deleted 
     public List<String> run(List<String> w) throws Exception {
         while (!configuration.state.equals("f") && !configuration.state.equals("e")) {
             //System.out.println(configuration);
